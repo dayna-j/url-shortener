@@ -2,8 +2,11 @@
   "name": "app",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
-  "scripts": {},
+  "main": "app.js",
+  "scripts": {
+    "test":"echo \"ERROR: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {
