@@ -60,7 +60,8 @@
     
     $.post('/new/:url', postObj, (err)=>{
       if (err) throw err;
-      }).done( (data) => {
+      }).then( (data) => {
+        alert('then has run')
         textBox.value = data.url;
         log(data.url);
       });
