@@ -47,6 +47,7 @@ app.post("/new/:url(*)", (req,res) => {
           if(err) throw err;
           if(result != null){
             log(`url already in database: ${result.originalUrl}`);
+            log(`Shortened url will be:${req.hostname}/${result.shortCode}`);
             // result found in database.  redirect.
             // res.redirect(result.originalUrl);
             // res.end('redirect should occur here');
