@@ -40,7 +40,6 @@ app.post("/new/:url(*)", (req,res) => {
       if(err) throw err;
       else {
         log(`Connection to ${mongoose.connection.name} database established`);
-        // breaks here!!!!!!!!!!!!!!!!!!!!!!!
         // check to see whether url is already in the database
         let query = {originalUrl: url};
         db.collection("urls").findOne(query, (err,result)=> {
@@ -48,14 +47,10 @@ app.post("/new/:url(*)", (req,res) => {
           if(result != null){
             log(`url already in database: ${result.originalUrl}`);
             log(`Shortened url will be:${req.hostname}/${result.shortCode}`);
-            // result found in database.  redirect.
-            // res.redirect(result.originalUrl);
-            // res.end('redirect should occur here');
             res.send({url:`${req.hostname}/${result.shortCode}`});
           } 
           else {
             // result was NOT FOUND IN DATABASE
-            // res.redirect("/");
             log('result not found in database');
             let urlObj = {
               shortCode: shortid.generate(),
@@ -93,7 +88,6 @@ app.get('/:shortCode(*)', (req,res)=>{
     db.collection("urls").findOne(query, (err,result)=> {
       if(err) throw err;
       if(result != null){
-        // eventually, redirect will happen here
         log(`shortCode found in database: ${result.shortCode}`);
         log(`Shortened url will be:${req.hostname}/${result.shortCode}`);
         res.redirect(result.originalUrl);
