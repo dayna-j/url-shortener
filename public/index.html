@@ -1,7 +1,8 @@
 <html>
 
 <head>
-	<link rel="stylesheet" type="text/css" href="public/main.css">
+  <link rel="stylesheet" type="text/css" href="public/main.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 	<!-- <script src='public/tests.js'></script> -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	 crossorigin="anonymous"></script>
@@ -44,6 +45,7 @@
   // })
 
   button.addEventListener('click', (event) => {
+    event.preventDefault();
     if(!textBox.value) {return null;}
     let url = textBox.value;
 
@@ -52,19 +54,11 @@
       url: url
     }
     
-    // fetch('/new/url', postObj).then(resp=>resp.json()).then(data=>log(data))
-    //   .catch(err=>log(err));
-
-    // fetch('/new/'+url,postObj)
-    //   .catch(err=>log(err));
     
-    $.post('/new/:url', postObj, (err)=>{
-      if (err) throw err;
-      }).then( (data) => {
-        alert('then has run')
-        textBox.value = data.newUrl;
-        log(data.newUrl);
-      });
+    $.post('/new/:url', postObj, (data) => {
+        log(data);
+        textBox.value = data.url;
+    })
 
   })
 	</script>
