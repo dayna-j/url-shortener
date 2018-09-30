@@ -23,7 +23,7 @@ body{
   
   
   background: linear-gradient(135deg, #fefcea 0%,#308fdd 100%); 
-  /* background: url('https://pixabay.com/get/e832b6062ef4043ed1584d05fb094197e171e0dc1eac104496f8c37da3eebdb1/abstract-1779605_1280.png') no-repeat center center fixed; */
+  background: url('https://pixabay.com/get/e832b6062ef4043ed1584d05fb094197e171e0dc1eac104496f8c278a7eeb1ba/abstract-1779605_1280.png') no-repeat center center fixed;
   background-size: cover;
   
 }
@@ -123,7 +123,7 @@ input[type='text']{
 input[type='text']:hover,
 input[type='text']:focus {
   background-color: white;
-  width: 75%;
+  /* width: 75%; */
   border-style: outset;
   color: rgb(54, 178, 209);
 
