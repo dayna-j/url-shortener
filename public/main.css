@@ -44,18 +44,25 @@ header {
   top: 0;
   height: 60px;
   width: 100%;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   background-color: rgba(15, 15, 15, 0.945);
+}
 
+#headerWrapper{
+  display: flex;
+  justify-content: flex-end;
+  /* background-color: orange; */
+  width: 80%;
 }
 
 #iconContainer{
   display: flex;
-  margin-right: 35px;
+  /* margin-right: 35px; */
   justify-content: space-between;
   /* background-color: red; */
   width: 35%;
+  transition: all .4s;
   /* width: 25%; */
 }
 
