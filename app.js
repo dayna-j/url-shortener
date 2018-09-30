@@ -29,7 +29,7 @@ app.post("/new/:url(*)", (req,res) => {
     // the URL is valid
     log('url is syntactically valid..');
     
-    dns.lookup(url.split('//')[1], (err, addresses, family) => {
+    dns.lookup(url.split('//')[1].split('/')[0], (err, addresses, family) => {
     if(err) return log(err); // dns failed
     else {
       // At this point, the URL has been syntax validated and dns validated.  
