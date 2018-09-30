@@ -22,7 +22,7 @@ app.get('/', (req, res)=>{
 });
 
 app.post("/new/:url(*)", (req,res) => {
-  log(`url is ${req.body.url}`);
+  log(`url POSTED is ${req.body.url}`);
   let url = req.body.url;
   
   if(validUrl.isWebUri(url)) {
@@ -34,17 +34,13 @@ app.post("/new/:url(*)", (req,res) => {
     else {
       // At this point, the URL has been syntax validated and dns validated.  
       console.log(`url: ${url} passes dns lookup`);
+
       // database stuff here...
       mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }, (err, db) => {
       if(err) throw err;
       else {
         log(`Connection to ${mongoose.connection.name} database established`);
         // breaks here!!!!!!!!!!!!!!!!!!!!!!!
-        let urlObj = {
-          shortCode: shortid.generate(),
-          originalUrl: url,
-          newUrl: `${req.hostname}/${urlObj.shortCode}`
-        };
         // check to see whether url is already in the database
         let query = {originalUrl: url};
         db.collection("urls").findOne(query, (err,result)=> {
@@ -52,13 +48,18 @@ app.post("/new/:url(*)", (req,res) => {
           if(result != null){
             log(`url already in database: ${result.originalUrl}`);
             // result found in database.  redirect.
-            res.redirect(result.originalUrl);
-            res.end('redirect should occur here');
+            // res.redirect(result.originalUrl);
+            // res.end('redirect should occur here');
+            res.send({url:`${req.hostname}/${result.shortCode}`});
           } 
           else {
             // result was NOT FOUND IN DATABASE
             // res.redirect("/");
             log('result not found in database');
+            let urlObj = {
+              shortCode: shortid.generate(),
+              originalUrl: url,
+            };
             // need to add result to database
             db.collection("urls").insertOne(urlObj, (err,data) => {
               if(err) throw err;
