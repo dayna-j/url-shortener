@@ -22,7 +22,7 @@ body{
   margin:0;
   padding:0;
   /* background: linear-gradient(135deg, #fefcea 0%,#308fdd 100%);  */
-  background: url('https://pixabay.com/get/e832b6062ef4043ed1584d05fb094197e171e0dc1eac104496f8c27aa6e4b7bc/abstract-1779605_1280.png') no-repeat center center fixed;
+  background: url('https://pixabay.com/get/e832b6062ef4043ed1584d05fb094197e171e0dc1eac104496f8c27aafe9b0bf/abstract-1779605_1280.png') no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -44,11 +44,34 @@ header {
   top: 0;
   height: 60px;
   width: 100%;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  opacity: .85;
-  background-color: #151515;
-  /* border-bottom: 5px solid rgb(14, 32, 3); */
+  background-color: rgba(15, 15, 15, 0.945);
+
+}
+
+#iconContainer{
+  display: flex;
+  margin-right: 35px;
+  justify-content: space-between;
+  /* background-color: red; */
+  width: 35%;
+  /* width: 25%; */
+}
+
+#iconContainer i{
+  /* background-color: red; */
+
+  /* padding: 50px; */
+  /* margin-right: 50px; */
+  cursor: pointer;
+  color: rgba(103, 199, 103, 0.377);
+  transition: all .4s;
+}
+
+#iconContainer i:hover{
+  color: rgba(103, 199, 103, 0.548);
+
 }
 
 
@@ -165,8 +188,7 @@ footer {
   bottom: 0;
   height: 40px;
   width: 100%;
-  background-color: #151515;
-  opacity: .85;
+  background-color: rgba(15, 15, 15, 0.945);
 }
 
 footer p {
