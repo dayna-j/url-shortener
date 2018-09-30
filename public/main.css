@@ -183,7 +183,7 @@ input[type='text']:focus {
 #submitButton:hover,
 #submitButton:focus{
   border: 2px rgb(211, 190, 190) inset;
-  width: 75%;
+  /* width: 75%; */
 
 }
 
