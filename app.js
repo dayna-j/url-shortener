@@ -12,7 +12,6 @@ const app = express();
 
 shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
 app.use(cors());
-// app.options('/new/:url(*)', cors()) 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/public', express.static(process.cwd() + '/public'));
@@ -35,7 +34,6 @@ app.post("/new/:url(*)", (req,res) => {
       // At this point, the URL has been syntax validated and dns validated.  
       console.log(`url: ${url} passes dns lookup`);
 
-      // database stuff here...
       mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }, (err, db) => {
       if(err) throw err;
       else {
@@ -62,8 +60,8 @@ app.post("/new/:url(*)", (req,res) => {
               console.log("1 document inserted");
               log(`Shortened url will be:${req.hostname}/${urlObj.shortCode}`);
               res.send({url:`${req.hostname}/${urlObj.shortCode}`});
-            db.close();
-            res.end('document successfully added to database');
+              db.close();
+              res.end('document successfully added to database');
             })
           }
         });
@@ -74,7 +72,6 @@ app.post("/new/:url(*)", (req,res) => {
     log('url is syntactically invalid..');
     res.end('url is syntactically invalid..');
   }
-  
 })
 
 app.get('/:shortCode(*)', (req,res)=>{
@@ -93,16 +90,11 @@ app.get('/:shortCode(*)', (req,res)=>{
         res.redirect(result.originalUrl);
         res.end(`${shortCode}`)
       } else {
-          res.redirect('/');
-          res.end('shortCode not found in database');
-        }
+         res.redirect('/');
+         res.end('shortCode not found in database');
+      }
     });
-
-
-
   });
-
-  
 });
 let port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`server started on port ${port}`));
