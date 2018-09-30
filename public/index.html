@@ -1,65 +1,52 @@
 <html>
 
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="public/main.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	<!-- <script src='public/tests.js'></script> -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	 crossorigin="anonymous"></script>
-	<link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
 	<title></title>
 </head>
-
 <body>
-	<div id='body-wrapper'>
-		<header>
-			<!-- <p class = 'slashed'>URL SHORTENER</p> -->
-		</header>
-		<div id='title-container'>
+  <div id='body-wrapper'>
+    <header>
+      <!-- <div id='iconContainer'>
+        <i class="fas fa-stroopwafel">
 
-			<!-- <h1 class = 'slashed'>URL SHORTENER</h1> -->
-		</div>
-		<div id='form-container'>
+      </div> -->
+    </header>
+	  <div id='form-container'>
 			<form method=''>
 				<input id='textBox' type='text' placeholder='Enter url to shorten'>
-				<!-- <input id='submitButton' type='submit'></input>  -->
-				<button id='submitButton'>Submit</button>
+				<button id='submitButton' class='hidden'>Submit</button>
 			</form>
 		</div>
 	</div>
 	<footer>
-		<p>By Dayna Blackwell</p>
 	</footer>
 	<script>
 	const log = msg => console.log(msg);
-  const form = document.getElementsByTagName('form')[0];
   const button = document.getElementById('submitButton');
   const textBox = document.getElementById('textBox');
 
-  // form.addEventListener('submit', (event) => {
-  //   let url = encodeURIComponent(textBox.value);
-  //   $.post('/new/:url', url, (err) => {
-  //          console.log('/new/:' + url)
-  //          if(err) console.log(err);
-  //        })
-  // })
+  textBox.addEventListener("submit", (event)=>{
+    button.click();
+  });
 
   button.addEventListener('click', (event) => {
     event.preventDefault();
     if(!textBox.value) {return null;}
     let url = textBox.value;
-
     let postObj = {
       method: 'post',
       url: url
     }
-    
-    
     $.post('/new/:url', postObj, (data) => {
         log(data);
         textBox.value = data.url;
-    })
-
+    }).catch(
+        err=>log(err));
   })
 	</script>
 </body>
