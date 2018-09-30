@@ -42,7 +42,8 @@ app.post("/new/:url(*)", (req,res) => {
         // breaks here!!!!!!!!!!!!!!!!!!!!!!!
         let urlObj = {
           shortCode: shortid.generate(),
-          originalUrl: url
+          originalUrl: url,
+          newUrl: `${req.hostname}/${urlObj.shortCode}`
         };
         // check to see whether url is already in the database
         let query = {originalUrl: url};
