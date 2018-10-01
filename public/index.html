@@ -12,6 +12,7 @@
   <div id='body-wrapper'>
     <header>
       <div id='headerWrapper'>
+        <div id='logoContainer'><img id = 'logo' src='https://a.uguu.se/U8wbKbEM75FQ_lazr_logo.svg'></img></div>
         <div id='iconContainer' class='fa-2x'>
           <i class="fab fa-linkedin"></i>
           <i class="fab fa-github-alt"></i>
@@ -23,11 +24,17 @@
 	  <div id='form-container'>
 			<form method=''>
 				<input id='textBox' type='text' placeholder='Enter url to shorten'>
+        <span id='errorBox'>
+          <p class='noSelect hidden'>Please enter a properly formatted URL.</p>
+        </span>
 				<button id='submitButton' class='hidden'>Submit</button>
 			</form>
 		</div>
 	</div>
 	<footer>
+    <div id='footerWrapper'>
+      <p class='noSelect'>By Dayna J. Blackwell</p>
+    </div>
 	</footer>
 	<script>
 	const log = msg => console.log(msg);
