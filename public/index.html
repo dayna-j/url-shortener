@@ -70,7 +70,7 @@
     }
     
     $.post('/new/:url', postObj, (data) => {
-        // alert(data);
+        alert(data);
         if (data === 'err') {
           // if there was an error, 
           warning.classList.remove('hidden');
