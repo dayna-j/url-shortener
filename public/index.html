@@ -14,11 +14,11 @@
       <div id='headerWrapper'>
         <div id='logoContainer'><img id = 'logo' src='https://www.daynajblackwell.com/portfolio/lazr/lazr_logo.svg'></img></div>
         <div id='iconContainer' class='fa-2x'>
-          
+
           <a href = 'https://www.linkedin.com/in/dayna-blackwell/'>
             <i class="fab fa-linkedin"></i>
           </a>
-          
+
           <a  href = 'https://github.com/dayna-j'>
             <i class="fab fa-github-alt"></i>
           </a>
@@ -26,11 +26,11 @@
           <a href = 'https://codepen.io/dayna-j/public/'>
             <i class="fab fa-codepen"></i>
           </a>
-          
+
           <a href = 'mailto:someone@yoursite.com'>
             <i class="fas fa-at"></i>
           </a>
-          
+
         </div> 
       </div>
     </header>
@@ -53,8 +53,10 @@
 	const log = msg => console.log(msg);
   const button = document.getElementById('submitButton');
   const textBox = document.getElementById('textBox');
+  const errorBox = document.querySelector('#errorBox');
+  const warning = errorBox.children[0];
 
-  textBox.addEventListener("submit", (event)=>{
+  textBox.addEventListener("submit", (event)=> {
     button.click();
   });
 
@@ -66,12 +68,20 @@
       method: 'post',
       url: url
     }
+    
     $.post('/new/:url', postObj, (data) => {
-        log(data);
-        textBox.value = data.url;
-    }).catch(
-        err=>log(err));
-  })
+        // alert(data);
+        if (data === 'err') {
+          // if there was an error, 
+          warning.classList.remove('hidden');
+          textBox.value = 'Try again';
+         } else {
+          warning.classList.add('hidden');
+          textBox.value = data.url;}
+
+        })
+        .catch(err=>log(err));
+  });
 	</script>
 </body>
 
