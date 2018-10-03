@@ -102,4 +102,4 @@ app.get('/:shortCode(*)', (req,res) => {
     });
   });
 });
-app.listen(port, () => console.log(`server started on port ${port}`));
+app.listen(process.env.PORT, () => console.log(`server started on port ${PORT}`));
