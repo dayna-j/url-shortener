@@ -47,8 +47,6 @@ app.post("/new/:url(*)", (req,res) => {
           if(err) throw err;
           if(result != null){
             log(`url already in database: ${result.originalUrl}`);
-            // res.redirect(result.originalUrl);
-            // res.end('redirect should occur here');
             log(`${req.hostname}/${result.shortCode}`);
             res.send({url:`${req.hostname}/${result.shortCode}`});
           } 
