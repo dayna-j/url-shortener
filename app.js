@@ -40,8 +40,7 @@ app.post("/new/:url(*)", (req,res) => {
       if(err) throw err;
       else {
         log(`Connection to ${mongoose.connection.name} database established`);
-        // breaks here!!!!!!!!!!!!!!!!!!!!!!!
-        
+       
         // check to see whether url is already in the database
         let query = {originalUrl: url};
         db.collection("urls").findOne(query, (err,result)=> {
@@ -55,9 +54,7 @@ app.post("/new/:url(*)", (req,res) => {
           } 
           else {
             // result was NOT FOUND IN DATABASE
-            // res.redirect("/");
             log('result not found in database');
-            // need to add result to database
             let urlObj = {
               shortCode: shortid.generate(),
               originalUrl: url,
