@@ -9,7 +9,7 @@ const mongo = require('mongodb');
 const mongoose = require('mongoose');
 const log = msg => console.log(msg);
 const app = express();
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 
 shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
 app.use(cors());
@@ -102,4 +102,4 @@ app.get('/:shortCode(*)', (req,res) => {
     });
   });
 });
-app.listen(process.env.PORT, () => console.log(`server started on port ${PORT}`));
+app.listen(port, () => console.log(`server started on port ${port}`));
